@@ -1,7 +1,9 @@
 extends ../layout
 
 block content
-	h1 Blog Posts
+	span
+		h1 Blog Posts
+			a.btn.btn-primary.pull-right(href='/new') Add Article
 
 	each article in articles
 		div.panel.panel-default

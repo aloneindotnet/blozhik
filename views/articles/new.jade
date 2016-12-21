@@ -4,18 +4,22 @@ block append scripts
 	script(src='/scripts/new.js')
 
 block content
-	form
-		div.form-group
-			label(for='title') Title:
-			input.form-control(type='text', name='title')
-		div.form-group
-			label(for='text') Text:
-			textarea.form-control(rows=5, name='text')
-		div.form-group
-			label(for='text') Tags (separated by comma):
-			input.form-control(type='text', name='tags')
-		div.form-group
-			label(for='text') Author Name:
-			input.form-control(type='text', name='authorName')
+	span
+		h1 Add Article
+			a.btn.btn-primary.pull-right(href='/') Return to Articles
+	div.well
+		form
+			div.form-group
+				label(for='title') Title:
+				input.form-control(type='text', name='title')
+			div.form-group
+				label(for='text') Text:
+				textarea.form-control(rows=5, name='text')
+			div.form-group
+				label(for='text') Tags (separated by comma):
+				input.form-control(type='text', name='tags')
+			div.form-group
+				label(for='text') Author Name:
+				input.form-control(type='text', name='authorName')
 
-	button#btn_addArticle.btn.btn-default Add article
+		button#btn_addArticle.btn.btn-default Add article
