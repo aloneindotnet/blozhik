@@ -1,0 +1,17 @@
+extends ../layout
+
+block content
+	h1 Blog Posts
+
+	each article in articles
+		div.panel.panel-default
+			div.panel-heading  
+				a(href='#{article._id}') #{article.title}
+			div.panel-body #{article.text}
+			
+				hr
+				
+				each tag in article.tags
+					a.label.label-default(href="") #{tag}
+					| 
+				

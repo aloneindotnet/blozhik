@@ -1,0 +1,36 @@
+extends ../layout
+
+block content
+
+	div
+		h1 #{article.title}
+
+		p.lead by #{article.authorName}
+		hr
+
+		p
+			span.glyphicon.glyphicon-time
+			|   Posted on August 24, 2013 at 9:00 PM
+
+		hr
+
+		p #{article.text}
+
+		hr
+
+		div.well
+			h4 Leave a Comment:
+				form
+					div.form-group
+						textarea.form-control(rows="3")
+					button#btn_addComment.btn.btn-primary Add Comment
+
+					hr
+
+					div.media
+						a.pull-left
+							img.media-object(src="http://placehold.it/64x64")
+						div.media-body
+							h4.media-heading Start Bootstrap
+								small.pull-right August 25, 2014 at 9:30 PM
+							| Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.

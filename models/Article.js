@@ -4,22 +4,24 @@ var Schema = mongoose.Schema;
 var articleScema = new Schema({
 	title: String,
 	text: String,
-	tag: [String],
+	tags: [String],
 	comments: [
 		{
 			text: String,
 			created: Date,
-			author: {
+			/*author: {
 				author_id: String,
 				name: String
-			}
+			}*/
+			authorName: String
 		}
 	],
 	created: Date,
-	author: {
+	/*author: {
 		author_id: String,
 		name: String
-	}
+	}*/
+	authorName: String
 });
 
 var Article = mongoose.model('Article', articleScema, 'Articles');
