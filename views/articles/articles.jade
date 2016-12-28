@@ -1,14 +1,22 @@
 extends ../layout
 
+block append scripts
+	script(src='/scripts/index.js')
+
 block content
 	span
 		h1 Blog Posts
-			a.btn.btn-primary.pull-right(href='/new') Add Article
+			a.btn.btn-primary.pull-right(href='/articles/new') Add Article
 
 	each article in articles
 		div.panel.panel-default
 			div.panel-heading  
-				a(href='#{article._id}') #{article.title}
+				span
+					a(href='/articles/#{article._id}') #{article.title}
+					div.pull-right
+						a.label.label-success(href="/articles/edit/#{article._id}") Edit
+						| 
+						a.label.label-warning.btn_delete(href="javaScript:void(0);", data-id="#{article._id}") Delete
 			div.panel-body #{article.text}
 			
 				hr

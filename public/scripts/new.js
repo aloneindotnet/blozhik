@@ -8,12 +8,16 @@ $(document).ready(
 				//var formData = JSON.stringify(obj);
 				obj.tags = obj.tags.split(',');
 				
-				$.ajax('api/articles', {
+				var requestType = obj.id ? 'PUT' : 'POST';
+				
+				$.ajax('/api/articles/' + obj.id, {
 					data : JSON.stringify(obj),
 					contentType : 'application/json',
-					type : 'POST'
+					type : requestType,
+					success: function() {
+						window.location = '/';
+					}
 				});
-
 			}
 		);
 	}

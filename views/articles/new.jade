@@ -5,21 +5,22 @@ block append scripts
 
 block content
 	span
-		h1 Add Article
+		h1 #{title}
 			a.btn.btn-primary.pull-right(href='/') Return to Articles
 	div.well
 		form
+			input(type="hidden", name = "id", value="#{article._id || ''}")
 			div.form-group
 				label(for='title') Title:
-				input.form-control(type='text', name='title')
+				input.form-control(type='text', name='title', value='#{article.title || ""}')
 			div.form-group
 				label(for='text') Text:
-				textarea.form-control(rows=5, name='text')
+				textarea.form-control(rows=5, name='text') #{article.text || ''}
 			div.form-group
 				label(for='text') Tags (separated by comma):
-				input.form-control(type='text', name='tags')
+				input.form-control(type='text', name='tags', value = '#{article.tags || ""}')
 			div.form-group
 				label(for='text') Author Name:
-				input.form-control(type='text', name='authorName')
+				input.form-control(type='text', name='authorName', value='#{article.authorName || ""}')
 
-		button#btn_addArticle.btn.btn-default Add article
+		button#btn_addArticle.btn.btn-default #{title}

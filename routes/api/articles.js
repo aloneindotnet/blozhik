@@ -16,14 +16,32 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next) {
 	
 	var article = Article(req.body);
-	console.log(req.body);
-	console.log(article);
+	article.created = new Date();
+
 	article.save(function(err) {
 	  if (err) throw err;
 
 	});
 	res.status(200).end();
 	
+});
+
+router.put('/:id', function(req, res, next) {
+	
+	Article.findOneAndUpdate({_id: req.params.id}, req.body, function(err) {
+	  if (err) throw err;
+	});
+	
+	res.status(200).end();
+});
+
+router.delete('/:id', function(req, res, next) {
+	
+	Article.findOneAndRemove({_id: req.params.id}, function(err) {
+	  if (err) throw err;
+	});
+	
+	res.status(200).end();
 });
 
 module.exports = router;

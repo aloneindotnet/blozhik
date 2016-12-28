@@ -3,7 +3,6 @@ var router = express.Router();
 
 var Article = require('../models/Article');
 
-/* GET home page. */
 router.get('/', function(req, res, next) {
 	Article.find({}, function(err, data) {
 		if (err) throw err;
@@ -11,13 +10,21 @@ router.get('/', function(req, res, next) {
 	});
 });
 
-router.get('/new', function(req, res, next) {
-  res.render('./articles/new', { title: 'Express' });
+router.get('/articles/new', function(req, res, next) {
+  res.render('./articles/new', {article: {}, title: 'Add Article' });
 });
 
-router.get('/:articleId', function(req, res, next) {
+router.get('/articles/edit/:id', function(req, res, next) {
+	Article.findOne({_id: req.params.id}, function(err, data) {
+		if (err) throw err;
+		data.tags = data.tags.join();
+		res.render('./articles/new', { article: data, title: 'Edit Article' });
+	});
+
+});
+
+router.get('/articles/:articleId', function(req, res, next) {
 	Article.findOne({_id: req.params.articleId}, function(err, data) {
-		console.log(data);
 		if (err) throw err;
 		res.render('./articles/details', { article: data });
 	});
