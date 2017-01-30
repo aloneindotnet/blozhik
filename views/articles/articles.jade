@@ -1,27 +1,30 @@
 extends ../layout
 
 block append scripts
-	script(src='/scripts/index.js')
+	script(src="https://unpkg.com/react@15/dist/react.js")
+	script(src="https://unpkg.com/react-dom@15/dist/react-dom.js")
+	script(src='/scripts/dist/articles.js')
 
 block content
 	span
 		h1 Blog Posts
 			a.btn.btn-primary.pull-right(href='/articles/new') Add Article
 
-	each article in articles
-		div.panel.panel-default
-			div.panel-heading  
-				span
-					a(href='/articles/#{article._id}') #{article.title}
-					div.pull-right
-						a.label.label-success(href="/articles/edit/#{article._id}") Edit
-						| 
-						a.label.label-warning.btn_delete(href="javaScript:void(0);", data-id="#{article._id}") Delete
-			div.panel-body #{article.text}
-			
-				hr
+	div#container
+		//-each article in articles
+			div.panel.panel-default
+				div.panel-heading  
+					span
+						a(href='/articles/#{article._id}') #{article.title}
+						div.pull-right
+							a.label.label-success(href="/articles/edit/#{article._id}") Edit
+							| 
+							a.label.label-warning.btn_delete(href="javaScript:void(0);", data-id="#{article._id}") Delete
+				div.panel-body #{article.text}
 				
-				each tag in article.tags
-					a.label.label-default(href="") #{tag}
-					| 
+					hr
+					
+					each tag in article.tags
+						a.label.label-default(href="") #{tag}
+						| 
 				
