@@ -1,0 +1,31 @@
+<div class="container">
+	<span>
+		<h1> {{title}}
+			<button ng-click="returnToArticles()" class ="btn btn-primary pull-right" href='/'>Return to Articles</a>
+		</h1>
+		<div class="well">
+			<form name="articlesForm" ng-submit="submitForm()">
+				<input type="hidden" name = "_id" ng-model="article._id"/>
+				<div class="form-group">
+					<label for='title'>Title:</label>
+					<span class="pull-right" ng-show="articlesForm.title.$touched && articlesForm.title.$invalid">The title is required!</span>
+					<input class="form-control" type='text' name='title' ng-model="article.title" required/>
+				</div>
+				<div class="form-group">
+					<label for="text">Text:</label>
+					<span class="pull-right" ng-show="articlesForm.text.$touched && articlesForm.text.$invalid">Text is required!</span>
+					<textarea class="form-control" rows="5" name='text' ng-model="article.text" required></textarea>
+				</div>
+				<div class="form-group">
+					<label for="tags">Tags (separated by comma):</label>
+					<input class="form-control" type='text' name='tags' ng-model="article.tags"/>
+				</div>
+				<div class="form-group">
+					<label for="authorName">Author Name:</label>
+					<input class="form-control" type='text' name='authorName' ng-model="article.authorName"/>
+				</div>
+				<button type="submit" id="btn_addArticle" class="btn btn-default">{{title}}</button>
+			</form>
+		</div>
+	</span>
+</div>

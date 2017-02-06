@@ -13,6 +13,15 @@ router.get('/', function(req, res, next) {
 	});
 });
 
+router.get('/:id', function(req, res, next) {
+	
+	Article.findOne({_id: req.params.id}, function(err, article) {
+	  if (err) throw err;
+	  
+	  res.send(article);
+	});
+});
+
 router.post('/', function(req, res, next) {
 	
 	var article = Article(req.body);

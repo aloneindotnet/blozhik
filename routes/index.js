@@ -1,13 +1,15 @@
 var express = require('express');
+var path = require('path');
 var router = express.Router();
 
 var Article = require('../models/Article');
 
 router.get('/', function(req, res, next) {
-	Article.find({}, function(err, data) {
+	res.sendFile(path.join(__dirname, '../angular/index.html'));
+	/*Article.find({}, function(err, data) {
 		if (err) throw err;
 		res.render('./articles/articles', { articles: data });
-	});
+	});*/
 });
 
 router.get('/articles/new', function(req, res, next) {

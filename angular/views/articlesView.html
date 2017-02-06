@@ -1,0 +1,23 @@
+<div class="container" ng-init="$ctrl.init()">
+	<span>
+		<add-new-button-component></add-new-button-component>
+	</span>
+	<div id="container">
+		<div ng-repeat="article in $ctrl.articles" class="panel panel-default">
+			<div class="panel-heading">
+				<span>
+					<a href="/articles/{{article._id}}">{{article.title}}</a>
+					<div class="pull-right">
+						<a href ng-click="$ctrl.editArticle(article._id)" class="label label-success">Edit</a> 
+						<a class="label label-warning btn_delete" data-id="{{article._id}}">Delete</a>
+					</div>
+				</span>
+			</div>
+			<div class="panel-body">
+				{{article.text}}
+				<hr/>
+				<a ng-repeat="tag in article.tags" class="label label-default" href="">{{tag}}</a> 
+			</div>
+		</div>
+	</div>
+</div>
