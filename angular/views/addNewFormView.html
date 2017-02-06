@@ -13,8 +13,9 @@
 				</div>
 				<div class="form-group">
 					<label for="text">Text:</label>
-					<span class="pull-right" ng-show="articlesForm.text.$touched && articlesForm.text.$invalid">Text is required!</span>
-					<textarea class="form-control" rows="5" name='text' ng-model="article.text" required></textarea>
+					<span class="pull-right" ng-show="articlesForm.text.$touched && articlesForm.text.$invalid && !articlesForm.text.$error.textlength">Text is required!</span>
+					<span class="pull-right" ng-show="articlesForm.text.$error.textlength">Text should consists of more than 20 characters!</span>
+					<textarea class="form-control" rows="5" name='text' ng-model="article.text" required textlength></textarea>
 				</div>
 				<div class="form-group">
 					<label for="tags">Tags (separated by comma):</label>

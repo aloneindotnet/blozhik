@@ -1,4 +1,4 @@
-var app = angular.module('blozhik', ['ngRoute']);
+var app = angular.module('blozhik', ['ngRoute', 'ngResource']);
 
 app.config(['$routeProvider',
     function($routeProvider) {
@@ -26,3 +26,7 @@ app.config(['$routeProvider',
         });
     }
 ]);
+
+app.factory('Article', function($resource) {
+  return $resource('/api/articles/:id');
+});

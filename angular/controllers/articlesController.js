@@ -1,4 +1,4 @@
-app.controller('ArticlesController', function ArticlesController($scope, $location) {
+app.controller('ArticlesController', function ArticlesController($scope, $location, Article) {
 	  var ctrl = this;
 	  this.articles = [];
 	  
@@ -10,14 +10,17 @@ app.controller('ArticlesController', function ArticlesController($scope, $locati
 		  $location.path('/Article/' + id + '/edit')
 	  }
 	  
-	  function getArticles() {
-		$.ajax('/api/articles/', 
-		{
-			type : 'GET',
-			success: function(response) {
-				ctrl.articles = response;
-				$scope.$apply();
-			}
+	  this.deleteArticle = function(_id) {
+		Article.delete({ id: _id }, function() {
+			ctrl.articles = ctrl.articles.filter(function(obj) {
+				return obj._id !== _id;
+			});
 		});
+	  }
+	  
+	  function getArticles() {
+		var articles = Article.query(function() {
+			ctrl.articles = articles;
+		})
 	  }
 });

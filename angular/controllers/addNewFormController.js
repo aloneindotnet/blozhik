@@ -1,4 +1,4 @@
-app.controller('AddNewFormController', function AddNewFormController($scope, $routeParams, $location) {
+app.controller('AddNewFormController', function AddNewFormController($scope, $routeParams, $location, Article) {
 	var editMode = $routeParams.edit;
 	
 	$scope.title = editMode ? 'Edit Article' : 'Add Article';
@@ -8,13 +8,8 @@ app.controller('AddNewFormController', function AddNewFormController($scope, $ro
 	};
 	
 	if ($routeParams.articleId) {
-		$.ajax('/api/articles/' + $routeParams.articleId, 
-		{
-			type : 'GET',
-			success: function(response) {
-				$scope.article = response;
-				$scope.$apply();
-			}
+		var article = Article.get({ id: $routeParams.articleId }, function() {
+			$scope.article = article;
 		});
 	} else {
 		$scope.article = {};
@@ -23,17 +18,30 @@ app.controller('AddNewFormController', function AddNewFormController($scope, $ro
 	$scope.submitForm = function() {
 		$scope.article.tags = $scope.article.tags.split(',');
 		
-		var requestType = $scope.article._id ? 'PUT' : 'POST';
-		
-		$.ajax('/api/articles/' + ($scope.article._id || '') , {
-			data : JSON.stringify($scope.article),
-			contentType : 'application/json',
-			type : requestType,
-			success: function() {
-				$location.path('/');
-				$scope.$apply();
-			}
+		var article = editMode ? $scope.article : $.extend(new Article(), $scope.article);
+
+		Article.save(article, function() {
+			$location.path('/');
 		});
 	}
 	
+});
+
+app.directive('textlength', function (){ 
+   return {
+      require: 'ngModel',
+      link: function(scope, elem, attr, ngModel) {
+
+          ngModel.$parsers.unshift(function(value) {
+			  var valid = value && value.length >= 20;
+             ngModel.$setValidity('textlength', valid);
+             return valid ? value : undefined;
+          });
+
+          ngModel.$formatters.unshift(function(value) {
+             ngModel.$setValidity('textlength', value && value.length >= 20);
+             return value;
+          });
+      }
+   };
 });
