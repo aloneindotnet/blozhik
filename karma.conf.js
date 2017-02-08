@@ -22,13 +22,6 @@ module.exports = function(config) {
 		'./tests/*.tests.js'
 		],
 		port: 9876,
-		colors: true,
-		//reporters: ['spec', 'coverage'],
-		coverageReporter: {
-		type: 'html',
-		dir: './src/tests/coverage'
-		},
-		autoWatch: true,
 		browsers: ['Chrome'],
 		singleRun: false
 	});
